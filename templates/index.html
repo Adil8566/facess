@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101827">
+  <title>Face Tracking Mode | Deteksi Mata</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css', v='2') }}">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-mark">FT</div>
+    <div>
+      <p class="eyebrow">COMPUTER VISION PROJECT</p>
+      <h1>Face Tracking Mode</h1>
+    </div>
+    <span class="live-badge"><span></span> WEB APP</span>
+  </header>
+
+  <main class="container">
+    <section class="intro">
+      <p class="eyebrow">REAL-TIME DETECTION</p>
+      <h2>Deteksi Wajah dan Mata</h2>
+      <p class="intro-text">Aktifkan kamera perangkat. Preview berjalan langsung di browser, sementara OpenCV menganalisis frame berukuran ringan.</p>
+    </section>
+
+    <section class="workspace">
+      <div class="camera-card">
+        <div class="card-heading">
+          <div>
+            <p class="eyebrow">CAMERA PREVIEW</p>
+            <h3>Tampilan Kamera</h3>
+          </div>
+          <span id="cameraState" class="state-pill">Belum aktif</span>
+        </div>
+
+        <div class="video-stage" id="videoStage">
+          <video id="cameraVideo" autoplay playsinline muted></video>
+          <canvas id="detectionOverlay" aria-label="Penanda deteksi wajah dan mata"></canvas>
+          <div id="cameraPlaceholder" class="placeholder">
+            <div class="camera-icon">◎</div>
+            <strong>Kamera belum diaktifkan</strong>
+            <span>Tekan tombol Mulai Kamera untuk memberikan izin akses kamera.</span>
+          </div>
+          <div class="scan-line"></div>
+        </div>
+
+        <div class="button-row">
+          <button id="startButton" class="button button-primary" type="button">Mulai Kamera</button>
+          <button id="stopButton" class="button button-secondary" type="button" disabled>Hentikan</button>
+          <button id="captureButton" class="button button-outline" type="button" disabled>Simpan Hasil</button>
+        </div>
+        <p id="message" class="message" role="status">Siap. Izinkan akses kamera saat browser memintanya.</p>
+      </div>
+
+      <aside class="info-card">
+        <p class="eyebrow">ANALYSIS</p>
+        <h3>Informasi Deteksi</h3>
+        <div class="metric-grid">
+          <div class="metric">
+            <span>Jumlah Wajah</span>
+            <strong id="faceCount">0</strong>
+          </div>
+          <div class="metric">
+            <span>Jumlah Mata</span>
+            <strong id="eyeCount">0</strong>
+          </div>
+        </div>
+        <div class="detail-row">
+          <span>Status</span>
+          <strong id="detectionStatus">Kamera tidak aktif</strong>
+        </div>
+        <div class="detail-row">
+          <span>Posisi Wajah</span>
+          <strong id="facePosition">-</strong>
+        </div>
+        <div class="info-note">
+          <strong>Catatan penggunaan</strong>
+          <p>Gunakan pencahayaan yang cukup dan posisikan wajah menghadap kamera. Deteksi ini menggunakan Haar Cascade, sehingga hasil dapat dipengaruhi sudut wajah, cahaya, dan kualitas kamera.</p>
+        </div>
+      </aside>
+    </section>
+
+    <footer>Face Tracking Mode · Python, Flask &amp; OpenCV</footer>
+  </main>
+  <script src="{{ url_for('static', filename='app.js', v='2') }}"></script>
+</body>
+</html>
